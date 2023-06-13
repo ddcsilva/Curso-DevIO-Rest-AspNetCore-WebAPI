@@ -49,7 +49,7 @@ public class FornecedoresController : MainController
 
         if (!result) return BadRequest();
 
-        return Ok(fornecedor);        
+        return Ok(await ObterFornecedorEndereco(fornecedor.Id));
     }
 
     [HttpPut("{id:guid}")]
@@ -78,7 +78,7 @@ public class FornecedoresController : MainController
 
         if (!result) return BadRequest();
 
-        return Ok(fornecedorViewModel);
+        return NoContent();
     }
 
     private async Task<FornecedorViewModel> ObterFornecedorProdutosEndereco(Guid id)
