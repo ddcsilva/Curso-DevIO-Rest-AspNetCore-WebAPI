@@ -1,5 +1,6 @@
 using DevIO.Api.Configurations;
 using DevIO.Data.Context;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +13,11 @@ builder.Services.AddDbContext<MeuDbContext>(options =>
 builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddControllers();
 builder.Services.ResolveDependencies();
+
+builder.Services.Configure<ApiBehaviorOptions>(options =>
+{
+    options.SuppressModelStateInvalidFilter = true;
+});
 
 var app = builder.Build();
 
