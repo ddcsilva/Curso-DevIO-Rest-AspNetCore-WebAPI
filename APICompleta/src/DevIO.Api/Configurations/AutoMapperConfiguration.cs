@@ -10,6 +10,9 @@ public class AutoMapperConfiguration : Profile
     {
         CreateMap<Fornecedor, FornecedorViewModel>().ReverseMap();
         CreateMap<Endereco, EnderecoViewModel>().ReverseMap();
-        CreateMap<Produto, ProdutoViewModel>().ReverseMap();
+        CreateMap<ProdutoViewModel, Produto>();
+
+        CreateMap<Produto, ProdutoViewModel>()
+            .ForMember(dest => dest.NomeFornecedor, opt => opt.MapFrom(src => src.Fornecedor.Nome));
     }
 }

@@ -12,6 +12,16 @@ builder.Services.AddDbContext<MeuDbContext>(options =>
 
 builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddControllers();
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("Development",
+        builder => builder
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader());
+});
+
 builder.Services.ResolveDependencies();
 
 builder.Services.Configure<ApiBehaviorOptions>(options =>
